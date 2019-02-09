@@ -1,0 +1,17 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.lightbox{
+    background:rgba(black, 0.9);
+    height:100vh;
+    overflow: hidden;
+    position: relative;
+    img{
+        display: block;
+        position: absolute;
+        transform-origin: 0 0;
+    }
+}
