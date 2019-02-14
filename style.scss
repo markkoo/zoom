@@ -4,6 +4,8 @@
     box-sizing: border-box;
 }
 
+
+
 .overlay{
     background:rgba(black, 0.9);
     height:100vh;
@@ -57,7 +59,7 @@
 }
 
 .crop{
-    background: black;
+    background: white;
     border:1px solid red;
     width:500px;
     height:300px;
@@ -70,8 +72,7 @@
         top:0;
         left:0;
         display: block;
-        // transform-origin: 0 0;
-        // transform: translate(1px, -224px) scale(0.395);
+        will-change: transform;
     }
     .cropFrame{
         position: absolute;
@@ -81,7 +82,7 @@
         bottom:0;
         // width:200px;
         // height:150px;
-        width:300px;
+        width:200px;
         height:200px;
         box-shadow: 0 0 0 2000px rgba(black, 0);
         // transform: translate(150px, 75px);
@@ -204,5 +205,23 @@
             height:6px;
             background: lightblue;
         }
+    }
+}
+
+
+.control{
+    position: fixed;
+    top:20px;
+    left:10px;
+    z-index: 1000;;
+    label{
+        display: block;
+    }
+    input{
+        width:100px;
+    }
+    button{
+        display: block;
+        margin-bottom: 10px;
     }
 }

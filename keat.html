@@ -6,73 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        :root {
-            --imageTx: 0;
-            --imageTy: 0;
-            --imageScale: 1;
-            --imageDeg: 0deg;
-        }
-
-        .crop {
-            background: black;
-            border: 2px solid red;
-            width: 400px;
-            height: 700px;
-            margin: 50px 300px;
-            position: relative;
-        }
-
-        img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: block;
-            opacity: 0.5;
-            transform:
-                translate3d(var(--imageTx), var(--imageTy), 0) scale(var(--imageScale)) rotate(var(--imageDeg));
-        }
-
-        .frame {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            width: 300px;
-            height: 300px;
-            border: 3px solid blue;
-        }
-
-        .control {
-            position: fixed;
-            top: 20px;
-            left: 10px;
-        }
-
-        label {
-            display: block;
-        }
-
-        input {
-            width: 100px;
-        }
-
-        button {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .eyeposition {
-            position: fixed;
-            top: 100px;
-            left: 100px;
-            width: 3px;
-            height: 3px;
-            background: yellow;
-            z-index: 10;
-        }
-    </style>
+    <link rel="stylesheet" href="keat.css">
 </head>
 
 <body>
@@ -99,7 +33,12 @@
 
     <div class="crop parent zoom">
         <img class="image" style="transform: translate(0,0) scale(1)" src="/keat.jpg">
-        <div class="frame" style="transform: translate(0,0) scale(1)"></div>
+        <div class="frame" style="transform: translate(0,0) scale(1)">
+            <span class="topLine"></span>
+            <span class="rightLine"></span>
+            <span class="bottomLine"></span>
+            <span class="leftLine"></span>
+        </div>
     </div>
 
     <div id="eyeposition" class="eyeposition"></div>

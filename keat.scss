@@ -1,0 +1,200 @@
+*{
+    box-sizing: border-box;
+}
+:root {
+    --imageTx: 0;
+    --imageTy: 0;
+    --imageScale: 1;
+    --imageDeg: 0deg;
+}
+
+.crop {
+    background: black;
+    border: 2px solid red;
+    width: 400px;
+    height: 700px;
+    margin: 50px 300px;
+    position: relative;
+}
+
+img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    opacity: 0.5;
+    transform:
+        translate3d(var(--imageTx), var(--imageTy), 0) scale(var(--imageScale)) rotate(var(--imageDeg));
+}
+
+.frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    height: 300px;
+}
+
+.control {
+    position: fixed;
+    top: 20px;
+    left: 10px;
+    label {
+        display: block;
+    }
+    
+    input {
+        width: 100px;
+    }
+    
+    button {
+        display: block;
+        margin-bottom: 10px;
+    }
+}
+
+
+.eyeposition {
+    position: fixed;
+    top: 100px;
+    left: 100px;
+    width: 3px;
+    height: 3px;
+    background: yellow;
+    z-index: 10;
+}
+
+.frame{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    // width:200px;
+    // height:150px;
+    width:200px;
+    height:200px;
+    box-shadow: 0 0 0 2000px rgba(black, 0);
+    // transform: translate(150px, 75px);
+
+    span{
+        display: block;
+        position: absolute;
+    }
+    .verticalDashed{
+        width:100%;
+        height:33.33%;
+        top:33.33%;
+        border-top: 1px dashed #fff;
+        border-bottom: 1px dashed #fff;
+    }
+    .horizontalDashed{
+        width:33.33%;;
+        height:100%;
+        left:33.33%;
+        border-left: 1px dashed #fff;
+        border-right: 1px dashed #fff;
+    }
+    .topLine{
+        cursor: ns-resize;
+        top:0;
+        left:0;
+        width:100%;
+        height:5px;
+        border-top:2px solid lightblue;
+    }
+    .rightLine{
+        cursor: ew-resize;
+        right:0;
+        top:0;
+        width:5px;
+        height:100%;
+        border-right:2px solid lightblue;
+    }
+    .bottomLine{
+        cursor: ns-resize;
+        bottom:0;
+        left:0;
+        width:100%;
+        height:5px;
+        border-bottom:2px solid lightblue;
+    }
+    .leftLine{
+        cursor: ew-resize;
+        left:0;
+        top:0;
+        width:5px;
+        height:100%;
+        border-left:2px solid lightblue;
+    }
+    .eastDot{
+        //东
+        right: -3px;
+        top: calc(50% - 3px);
+        width:6px;
+        height:6px;
+        background: lightblue;
+    }
+    .southDot{
+        //南
+        right: calc(50% - 3px);
+        top: -3px;
+        width:6px;
+        height:6px;
+        background: lightblue;
+    }
+    .westDot{
+        //西
+        left: -3px;
+        top: calc(50% - 3px);
+        width:6px;
+        height:6px;
+        background: lightblue;
+    }
+    .northDot{
+        //北
+        left: calc(50% - 3px);
+        top: -3px;
+        width:6px;
+        height:6px;
+        background: lightblue;
+    }
+    .northEastDot{
+        //东北
+        cursor: nesw-resize;
+        right: -3px;
+        top: -3px;
+        width:6px;
+        height:6px;
+        background: lightblue;
+    }
+    .southEastDot{
+        //东南
+        cursor: nwse-resize;
+        right: -3px;
+        bottom: -3px;
+        width:6px;
+        height:6px;
+        background: lightblue;
+    }
+    .northWestDot{
+        //西北
+        cursor: nwse-resize;
+        left: -3px;
+        top: -3px;
+        width:6px;
+        height:6px;
+        background: lightblue;
+    }
+    .southWestDot{
+        //西南
+        cursor: nesw-resize;
+        left: -3px;
+        bottom: -3px;
+        width:6px;
+        height:6px;
+        background: lightblue;
+    }
+}

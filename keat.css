@@ -1,230 +1,48 @@
 * {
-  margin: 0;
-  padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 
-.overlay {
-  background: rgba(0, 0, 0, 0.9);
-  height: 100vh;
-  width: 100vw;
-  overflow: scroll;
-  position: relative;
-}
-
-.overlay .slider {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-}
-
-.overlay .slider .item {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 100%;
-          flex: 0 0 100%;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-}
-
-.overlay .slider .item img {
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  -webkit-transform-origin: 0 0;
-          transform-origin: 0 0;
-}
-
-.overlay .slider .item span {
-  color: white;
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-}
-
-.buttonArea {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-}
-
-.eyeposition {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 3px;
-  height: 3px;
-  background: yellow;
-  z-index: 10;
+:root {
+  --imageTx: 0;
+  --imageTy: 0;
+  --imageScale: 1;
+  --imageDeg: 0deg;
 }
 
 .crop {
-  background: white;
-  border: 1px solid red;
-  width: 500px;
-  height: 300px;
-  margin: 200px auto;
+  background: black;
+  border: 2px solid red;
+  width: 400px;
+  height: 700px;
+  margin: 50px 300px;
   position: relative;
-  cursor: move;
 }
 
-.crop img {
+img {
   position: absolute;
   top: 0;
   left: 0;
   display: block;
-  will-change: transform;
+  opacity: 0.5;
+  -webkit-transform: translate3d(var(--imageTx), var(--imageTy), 0) scale(var(--imageScale)) rotate(var(--imageDeg));
+          transform: translate3d(var(--imageTx), var(--imageTy), 0) scale(var(--imageScale)) rotate(var(--imageDeg));
 }
 
-.crop .cropFrame {
+.frame {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  width: 200px;
-  height: 200px;
-  -webkit-box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0);
-          box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0);
-}
-
-.crop .cropFrame span {
-  display: block;
-  position: absolute;
-}
-
-.crop .cropFrame .verticalDashed {
-  width: 100%;
-  height: 33.33%;
-  top: 33.33%;
-  border-top: 1px dashed #fff;
-  border-bottom: 1px dashed #fff;
-}
-
-.crop .cropFrame .horizontalDashed {
-  width: 33.33%;
-  height: 100%;
-  left: 33.33%;
-  border-left: 1px dashed #fff;
-  border-right: 1px dashed #fff;
-}
-
-.crop .cropFrame .topLine {
-  cursor: ns-resize;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  border-top: 2px solid lightblue;
-}
-
-.crop .cropFrame .rightLine {
-  cursor: ew-resize;
-  right: 0;
-  top: 0;
-  width: 5px;
-  height: 100%;
-  border-right: 2px solid lightblue;
-}
-
-.crop .cropFrame .bottomLine {
-  cursor: ns-resize;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  border-bottom: 2px solid lightblue;
-}
-
-.crop .cropFrame .leftLine {
-  cursor: ew-resize;
-  left: 0;
-  top: 0;
-  width: 5px;
-  height: 100%;
-  border-left: 2px solid lightblue;
-}
-
-.crop .cropFrame .eastDot {
-  right: -3px;
-  top: calc(50% - 3px);
-  width: 6px;
-  height: 6px;
-  background: lightblue;
-}
-
-.crop .cropFrame .southDot {
-  right: calc(50% - 3px);
-  top: -3px;
-  width: 6px;
-  height: 6px;
-  background: lightblue;
-}
-
-.crop .cropFrame .westDot {
-  left: -3px;
-  top: calc(50% - 3px);
-  width: 6px;
-  height: 6px;
-  background: lightblue;
-}
-
-.crop .cropFrame .northDot {
-  left: calc(50% - 3px);
-  top: -3px;
-  width: 6px;
-  height: 6px;
-  background: lightblue;
-}
-
-.crop .cropFrame .northEastDot {
-  cursor: nesw-resize;
-  right: -3px;
-  top: -3px;
-  width: 6px;
-  height: 6px;
-  background: lightblue;
-}
-
-.crop .cropFrame .southEastDot {
-  cursor: nwse-resize;
-  right: -3px;
-  bottom: -3px;
-  width: 6px;
-  height: 6px;
-  background: lightblue;
-}
-
-.crop .cropFrame .northWestDot {
-  cursor: nwse-resize;
-  left: -3px;
-  top: -3px;
-  width: 6px;
-  height: 6px;
-  background: lightblue;
-}
-
-.crop .cropFrame .southWestDot {
-  cursor: nesw-resize;
-  left: -3px;
-  bottom: -3px;
-  width: 6px;
-  height: 6px;
-  background: lightblue;
+  width: 300px;
+  height: 300px;
 }
 
 .control {
   position: fixed;
   top: 20px;
   left: 10px;
-  z-index: 1000;
 }
 
 .control label {
@@ -239,4 +57,151 @@
   display: block;
   margin-bottom: 10px;
 }
-/*# sourceMappingURL=style.css.map */
+
+.eyeposition {
+  position: fixed;
+  top: 100px;
+  left: 100px;
+  width: 3px;
+  height: 3px;
+  background: yellow;
+  z-index: 10;
+}
+
+.frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 200px;
+  height: 200px;
+  -webkit-box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0);
+          box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0);
+}
+
+.frame span {
+  display: block;
+  position: absolute;
+}
+
+.frame .verticalDashed {
+  width: 100%;
+  height: 33.33%;
+  top: 33.33%;
+  border-top: 1px dashed #fff;
+  border-bottom: 1px dashed #fff;
+}
+
+.frame .horizontalDashed {
+  width: 33.33%;
+  height: 100%;
+  left: 33.33%;
+  border-left: 1px dashed #fff;
+  border-right: 1px dashed #fff;
+}
+
+.frame .topLine {
+  cursor: ns-resize;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  border-top: 2px solid lightblue;
+}
+
+.frame .rightLine {
+  cursor: ew-resize;
+  right: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  border-right: 2px solid lightblue;
+}
+
+.frame .bottomLine {
+  cursor: ns-resize;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  border-bottom: 2px solid lightblue;
+}
+
+.frame .leftLine {
+  cursor: ew-resize;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  border-left: 2px solid lightblue;
+}
+
+.frame .eastDot {
+  right: -3px;
+  top: calc(50% - 3px);
+  width: 6px;
+  height: 6px;
+  background: lightblue;
+}
+
+.frame .southDot {
+  right: calc(50% - 3px);
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  background: lightblue;
+}
+
+.frame .westDot {
+  left: -3px;
+  top: calc(50% - 3px);
+  width: 6px;
+  height: 6px;
+  background: lightblue;
+}
+
+.frame .northDot {
+  left: calc(50% - 3px);
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  background: lightblue;
+}
+
+.frame .northEastDot {
+  cursor: nesw-resize;
+  right: -3px;
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  background: lightblue;
+}
+
+.frame .southEastDot {
+  cursor: nwse-resize;
+  right: -3px;
+  bottom: -3px;
+  width: 6px;
+  height: 6px;
+  background: lightblue;
+}
+
+.frame .northWestDot {
+  cursor: nwse-resize;
+  left: -3px;
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  background: lightblue;
+}
+
+.frame .southWestDot {
+  cursor: nesw-resize;
+  left: -3px;
+  bottom: -3px;
+  width: 6px;
+  height: 6px;
+  background: lightblue;
+}
+/*# sourceMappingURL=keat.css.map */

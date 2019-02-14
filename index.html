@@ -8,32 +8,37 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <style>
-    .box{
-        position: absolute;
-        width:200px; 
-        height:400px; 
-        background: rgba(0,0,0,0.2);
-        margin:100px auto;
-        transform: rotate(0deg);
-    }
-    .box2{
-        position: absolute;
-        width:200px; 
-        height:400px; 
-        background: rgba(255,0,0,0.2);
-        margin:100px auto;
-        transform: rotate(0deg);
-    }
+        :root {
+        --tx: 0;
+        --ty: 0;
+        --scale: 0.5;
+        --deg: 0deg;
+        }
+
+  
+        img{
+            transform: 
+                translate3d(var(--tx), var(--ty), 0) 
+                scale(var(--scale)) 
+                rotate(var(--deg));
+        }
     </style>
 </head>
 
 <body>
-    <!-- <div class="box" ></div>
-    <div class="box2" ></div> -->
-    <!-- <img srcset="/500.jpg 500w,/1000.jpg 1000w"
-    sizes="(min-width: 1366px) 500px" src="/500.jpg" alt=""> -->
+    <div class="control">
+        <label for="">translate x</label>
+        <input id="tx" type="number" step="10">
+        <label for="">translate y</label>
+        <input id="ty" type="number" step="10">
+        <label for="">scale</label>
+        <input id="scale" type="number" step="0.1">
+        <label for="">rotate</label>
+        <input id="deg" type="number" step="45">
+    </div>
+    
     <div class="crop parent zoom">
-        <img class="image" src="/yangmi-overheight.jpg" alt="">
+        <img class="image" src="/yangmi-square.jpg" alt="">
         <div class="cropFrame frame">
             <span class="verticalDashed"></span>
             <span class="horizontalDashed"></span>
@@ -64,7 +69,7 @@
         let translateX = 0;
         let translateY = 0;
 
-
+        //#region 
         //for zoom
         // if((frameWidth / frameHeight) > (imgWidth / imgHeight)){
         //     //压高
@@ -87,30 +92,51 @@
         //     translateY = (imageBeforeScaleTranslateY - frameCenterPositionY) * -1;
         //     document.querySelector('.image').style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
         // }
+        //#endregion
 
         //for crop
         // 框居中
         const frameX = (parentWidth - frameWidth) / 2;
         const frameY = (parentHeight - frameHeight) / 2;
         document.querySelector('.frame').style.transform = `translate(${frameX}px, ${frameY}px)`;
+        
+        let scale = 0;
         if((frameWidth / frameHeight) > (imgWidth / imgHeight)){
             //压宽
-            const imageBeforeScaleTranslateX = imgWidth / 2;
-            const imageBeforeScaleTranslateY = imgHeight / 2;
-            const frameCenterPositionX = frameWidth / 2;
-            const frameCenterPositionY = frameHeight / 2;
-            const scale = frameWidth / imgWidth;
-            translateX = ((imageBeforeScaleTranslateX - frameCenterPositionX) * -1) + frameX;
-            translateY = ((imageBeforeScaleTranslateY - frameCenterPositionY) * -1) + frameY;
-            document.querySelector('.image').style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+            scale = frameWidth / imgWidth;
         } else {
             //压高
-          
+            scale = frameHeight / imgHeight;
         }
 
+        const imageBeforeScaleTranslateX = imgWidth / 2;
+        const imageBeforeScaleTranslateY = imgHeight / 2;
+        const frameCenterPositionX = frameWidth / 2;
+        const frameCenterPositionY = frameHeight / 2;
+        translateX = ((imageBeforeScaleTranslateX - frameCenterPositionX) * -1) + frameX;
+        translateY = ((imageBeforeScaleTranslateY - frameCenterPositionY) * -1) + frameY;
+        document.documentElement.style.setProperty('--tx', translateX + 'px');
+        document.documentElement.style.setProperty('--ty', translateY + 'px');
+        document.documentElement.style.setProperty('--scale', scale);
+
+        document.getElementById('tx').value = translateX;
+        document.getElementById('ty').value = translateY;
+        document.getElementById('scale').value = scale;
+
         //step rotate
-        document.querySelector('.image').style.transform = "translate(-150px, -649.5px) scale(0.375) rotate(1deg)";
-        
+        document.getElementById('tx').addEventListener('input', function(e) { 
+            document.documentElement.style.setProperty('--tx', e.currentTarget.value + 'px');
+        });
+        document.getElementById('ty').addEventListener('input', function(e) { 
+            document.documentElement.style.setProperty('--ty', e.currentTarget.value + 'px');
+        });
+        document.getElementById('scale').addEventListener('input', function(e) { 
+            document.documentElement.style.setProperty('--scale', e.currentTarget.value);
+        });
+        document.getElementById('deg').addEventListener('input', function(e) { 
+            document.documentElement.style.setProperty('--deg', e.currentTarget.value + 'deg');
+        });
+
 
         document.querySelector('.image').addEventListener('click', ($event)=>{
             const finalX = $event.clientX - document.querySelector('.image').getBoundingClientRect().left;
