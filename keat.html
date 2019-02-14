@@ -21,12 +21,23 @@
         left:0;
         display: block;
     }
+    .frame{
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        width:300px;
+        height:300px;
+        border:1px solid blue;
+    }
     </style>
 </head>
 
 <body>
-    <div class="crop parent zoom frame">
-        <img class="image" src="/yangmi-overwidth.jpg" alt="">
+    <div class="crop parent zoom">
+        <img class="image" style="transform: translate(0,0) scale(1)" src="/yangmi-overwidth.jpg" alt="">
+        <div class="frame" style="transform: translate(0,0) scale(1)"></div>
     </div>
 </body>
 
