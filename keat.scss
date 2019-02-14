@@ -27,15 +27,7 @@ img {
         translate3d(var(--imageTx), var(--imageTy), 0) scale(var(--imageScale)) rotate(var(--imageDeg));
 }
 
-.frame {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 300px;
-    height: 300px;
-}
+
 
 .control {
     position: fixed;
@@ -72,8 +64,6 @@ img {
     left:0;
     right:0;
     bottom:0;
-    // width:200px;
-    // height:150px;
     width:200px;
     height:200px;
     box-shadow: 0 0 0 2000px rgba(black, 0);
@@ -103,7 +93,7 @@ img {
         left:0;
         width:100%;
         height:5px;
-        border-top:2px solid lightblue;
+        border-top:2px solid blue;
     }
     .rightLine{
         cursor: ew-resize;
@@ -111,7 +101,7 @@ img {
         top:0;
         width:5px;
         height:100%;
-        border-right:2px solid lightblue;
+        border-right:2px solid blue;
     }
     .bottomLine{
         cursor: ns-resize;
@@ -119,7 +109,7 @@ img {
         left:0;
         width:100%;
         height:5px;
-        border-bottom:2px solid lightblue;
+        border-bottom:2px solid blue;
     }
     .leftLine{
         cursor: ew-resize;
@@ -127,7 +117,7 @@ img {
         top:0;
         width:5px;
         height:100%;
-        border-left:2px solid lightblue;
+        border-left:2px solid blue;
     }
     .eastDot{
         //东
@@ -135,7 +125,7 @@ img {
         top: calc(50% - 3px);
         width:6px;
         height:6px;
-        background: lightblue;
+        background: blue;
     }
     .southDot{
         //南
@@ -143,7 +133,7 @@ img {
         top: -3px;
         width:6px;
         height:6px;
-        background: lightblue;
+        background: blue;
     }
     .westDot{
         //西
@@ -151,7 +141,7 @@ img {
         top: calc(50% - 3px);
         width:6px;
         height:6px;
-        background: lightblue;
+        background: blue;
     }
     .northDot{
         //北
@@ -159,7 +149,7 @@ img {
         top: -3px;
         width:6px;
         height:6px;
-        background: lightblue;
+        background: blue;
     }
     .northEastDot{
         //东北
@@ -168,7 +158,7 @@ img {
         top: -3px;
         width:6px;
         height:6px;
-        background: lightblue;
+        background: blue;
     }
     .southEastDot{
         //东南
@@ -177,7 +167,7 @@ img {
         bottom: -3px;
         width:6px;
         height:6px;
-        background: lightblue;
+        background: blue;
     }
     .northWestDot{
         //西北
@@ -186,7 +176,7 @@ img {
         top: -3px;
         width:6px;
         height:6px;
-        background: lightblue;
+        background: blue;
     }
     .southWestDot{
         //西南
@@ -195,6 +185,6 @@ img {
         bottom: -3px;
         width:6px;
         height:6px;
-        background: lightblue;
+        background: blue;
     }
 }
