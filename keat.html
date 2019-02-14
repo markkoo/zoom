@@ -7,6 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        :root {
+  --imageTx: 0;
+  --imageTy: 0;
+  --imageScale: 1;
+  --imageDeg: 0deg;
+}
     .crop{
     background: black;
     border:2px solid red;
@@ -21,6 +27,10 @@
         left:0;
         display: block;
         opacity: 0.5;
+        transform: 
+            translate3d(var(--imageTx), var(--imageTy), 0) 
+            scale(var(--imageScale)) 
+            rotate(var(--imageDeg));
     }
     .frame{
         position: absolute;
@@ -32,14 +42,45 @@
         height:300px;
         border:3px solid blue;
     }
+    .control{
+        position: fixed;
+        top:20px;
+        left:10px;
+    }
+    label{
+        display: block;
+    }
+    input{
+        width:100px;
+    }
+    button{
+        display: block;
+        margin-bottom: 10px;
+    }
     </style>
 </head>
 
 <body>
+    <div class="control">
+        <button>buttonA</button>
+        <button>buttonB</button>
+        <label for="">translate x</label>
+        <input id="tx" type="text">
+        <label for="">translate y</label>
+        <input id="ty" type="text">
+        <label for="">scale</label>
+        <input id="scale" type="text">
+        <label for="">rotate</label>
+        <input id="rotate" type="text">
+    </div>
+
+
     <div class="crop parent zoom">
         <img class="image" style="transform: translate(0,0) scale(1)" src="/yangmi-overwidth.jpg" alt="">
         <div class="frame" style="transform: translate(0,0) scale(1)"></div>
     </div>
+
+ 
 </body>
 
 </html>
