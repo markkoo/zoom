@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="lightbox" class="lightbox">
+        <img id="img1" src="/yangmi.jpg" alt="">
+    </div>
+
+    <script>
+        const zoomFrameWidth = document.getElementById('lightbox').clientWidth;
+        const zoomFrameHeight = document.getElementById('lightbox').clientHeight;
+        const imgWidth = document.getElementById('img1').clientWidth;
+        const imgHeight = document.getElementById('img1').clientHeight;
+        const padding = 10;
+        let translateX = 0;
+        let translateY = 0;
+
+        if((zoomFrameWidth / zoomFrameHeight) > (imgWidth / imgHeight)){
+            //压高
+            const scale = (zoomFrameHeight - (padding * 2)) / imgHeight;
+            translateX = (zoomFrameWidth - (imgWidth * scale)) / 2;
+            translateY = 10;
+            document.getElementById('img1').style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        } else {
+            const scale = (zoomFrameWidth - (padding * 2)) / imgWidth;
+            translateX = 10;
+            translateY = (zoomFrameHeight - (imgHeight * scale)) / 2;
+            document.getElementById('img1').style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        }
+
+    </script>
+</body>
+</html>

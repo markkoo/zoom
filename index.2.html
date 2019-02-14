@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="buttonArea">
+        <button id="aButton">a</button>
+        <button id="bButton">b</button>
+    </div>
+    <div id="eyeposition" class="eyeposition"></div>
+    <div class="overlay">
+        <div class="slider">
+            <div id="item1" class="item">
+                <img id="img1" src="/sun.jpg" alt="">
+                <span>Yangmi</span>
+            </div>
+            <div id="item2" class="item">
+                <img id="img2" src="/yangmi-overheight.jpg" alt="">
+                <span>Yangmi 1</span>
+            </div>
+            <div id="item3" class="item">
+                <img id="img3" src="/yangmi-overwidthandheight.jpg" alt="">
+                <span>Yangmi 2</span>
+            </div>
+            <div id="item4" class="item">
+                <img id="img4" src="/yangmi-small.jpg" alt="">
+                <span>Yangmi 3</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        setImageSizeAndPosition('item1', 'img1');
+        setImageSizeAndPosition('item2', 'img2');
+        setTimeout(() => {
+            setImageSizeAndPosition('item3', 'img3');
+            setImageSizeAndPosition('item4', 'img4');
+        }, 1000);
+
+        function setImageSizeAndPosition(parentElementId, elementId){
+            const zoomFrameWidth = document.getElementById(parentElementId).clientWidth;
+            const zoomFrameHeight = document.getElementById(parentElementId).clientHeight;
+            const imgWidth = document.getElementById(elementId).clientWidth;
+            const imgHeight = document.getElementById(elementId).clientHeight;
+            const padding = 0;
+            let translateX = 0;
+            let translateY = 0;
+
+            if ((zoomFrameWidth / zoomFrameHeight) > (imgWidth / imgHeight)) {
+                console.log('press height');
+                //压高
+                const scale = (zoomFrameHeight - (padding * 2)) / imgHeight;
+                translateX = (zoomFrameWidth - (imgWidth * scale)) / 2;
+                translateY = 10;
+                document.getElementById(elementId).style.transform =
+                    `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+            } else {
+                console.log('press width');
+                const scale = (zoomFrameWidth - (padding * 2)) / imgWidth;
+                translateX = 0;
+                translateY = (zoomFrameHeight - (imgHeight * scale)) / 2;
+                console.log(document.getElementById(elementId))
+                document.getElementById(elementId).style.transform =
+                    `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+            }
+        }
+    
+        document.getElementById('aButton').addEventListener('click',()=>{
+            
+        });
+        document.getElementById('img1').style.transform = `translate(-414px, -736px) scale(2)`;
+        // document.getElementById('img1').addEventListener('click', ($event)=>{
+        //     const finalLeft = $event.clientX - document.getElementById('img1').getBoundingClientRect().left;
+        //     const finalRight = $event.clientY - document.getElementById('img1').getBoundingClientRect().top;
+        //     console.log('finalLeft', finalLeft);
+        //     console.log('finalRight', finalRight);
+        // });
+        document.getElementById('img1').addEventListener('click', ($event)=>{
+            const finalLeft = $event.clientX - document.getElementById('img1').getBoundingClientRect().left;
+            const finalRight = $event.clientY - document.getElementById('img1').getBoundingClientRect().top;
+            console.log('finalLeft', finalLeft);
+            console.log('finalRight', finalRight);
+            document.getElementById('eyeposition').style.top = $event.clientY + 'px';
+            document.getElementById('eyeposition').style.left = $event.clientX + 'px';
+            // document.getElementById('img1').style.transform = `translate(0px, 312.869px) scale(0.294034)`;
+            // document.getElementById('img1').style.transform = `translate(-92px, 267.869px) scale(0.294034)`;
+            // document.getElementById('img1').style.transform = `translate(0, 258px) scale(0.294034)`;
+        });
+        
+    </script>
+
+
+
+</body>
+
+</html>
