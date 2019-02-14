@@ -33,6 +33,7 @@
     <!-- <img srcset="/500.jpg 500w,/1000.jpg 1000w"
     sizes="(min-width: 1366px) 500px" src="/500.jpg" alt=""> -->
     <div class="crop parent zoom">
+        <img class="image" src="/yangmi-overheight.jpg" alt="">
         <div class="cropFrame frame">
             <span class="verticalDashed"></span>
             <span class="horizontalDashed"></span>
@@ -49,7 +50,6 @@
             <span class="northWestDot"></span>
             <span class="southWestDot"></span>
         </div>
-        <img class="image" src="/yangmi-overheight.jpg" alt="">
         <div id="eyeposition" class="eyeposition"></div>
     </div>
     <script>
@@ -57,53 +57,59 @@
         const parentHeight = document.querySelector('.parent').getBoundingClientRect().height;
         const frameWidth = document.querySelector('.frame').getBoundingClientRect().width;
         const frameHeight = document.querySelector('.frame').getBoundingClientRect().height;
+        const zoomWidth = document.querySelector('.zoom').getBoundingClientRect().width;
+        const zoomHeight = document.querySelector('.zoom').getBoundingClientRect().height;
         const imgWidth = document.querySelector('.image').clientWidth;
         const imgHeight = document.querySelector('.image').clientHeight;
         let translateX = 0;
         let translateY = 0;
 
-        // 框居中
-        const centerX = (parentWidth - frameWidth) / 2;
-        const centerY = (parentHeight - frameHeight) / 2;
-        // document.querySelector('.frame').style.transform = `translate(${centerX}px, ${centerY}px)`;
 
+        //for zoom
+        // if((frameWidth / frameHeight) > (imgWidth / imgHeight)){
+        //     //压高
+        //     const imageBeforeScaleTranslateX = imgWidth / 2;
+        //     const imageBeforeScaleTranslateY = imgHeight / 2;
+        //     const frameCenterPositionX = frameWidth / 2;
+        //     const frameCenterPositionY = frameHeight / 2;
+        //     const scale = frameHeight / imgHeight;
+        //     translateX = (imageBeforeScaleTranslateX - frameCenterPositionX) * -1;
+        //     translateY = (imageBeforeScaleTranslateY - frameCenterPositionY) * -1;
+        //     document.querySelector('.image').style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        // } else {
+        //     //压宽
+        //     const imageBeforeScaleTranslateX = imgWidth / 2;
+        //     const imageBeforeScaleTranslateY = imgHeight / 2;
+        //     const frameCenterPositionX = frameWidth / 2;
+        //     const frameCenterPositionY = frameHeight / 2;
+        //     const scale = frameWidth / imgWidth;
+        //     translateX = (imageBeforeScaleTranslateX - frameCenterPositionX) * -1;
+        //     translateY = (imageBeforeScaleTranslateY - frameCenterPositionY) * -1;
+        //     document.querySelector('.image').style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        // }
+
+        //for crop
+        // 框居中
+        const frameX = (parentWidth - frameWidth) / 2;
+        const frameY = (parentHeight - frameHeight) / 2;
+        document.querySelector('.frame').style.transform = `translate(${frameX}px, ${frameY}px)`;
         if((frameWidth / frameHeight) > (imgWidth / imgHeight)){
-            //压高
-            const imageBeforeScaleTranslateX = imgWidth / 2;
-            const imageBeforeScaleTranslateY = imgHeight / 2;
-            const frameCenterPositionX = frameWidth / 2;
-            const frameCenterPositionY = frameHeight / 2;
-            const scale = frameHeight / imgHeight;
-            translateX = (imageBeforeScaleTranslateX - frameCenterPositionX) * -1;
-            translateY = (imageBeforeScaleTranslateY - frameCenterPositionY) * -1;
-            document.querySelector('.image').style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-        } else {
             //压宽
             const imageBeforeScaleTranslateX = imgWidth / 2;
             const imageBeforeScaleTranslateY = imgHeight / 2;
             const frameCenterPositionX = frameWidth / 2;
             const frameCenterPositionY = frameHeight / 2;
             const scale = frameWidth / imgWidth;
-            translateX = (imageBeforeScaleTranslateX - frameCenterPositionX) * -1;
-            translateY = (imageBeforeScaleTranslateY - frameCenterPositionY) * -1;
+            translateX = ((imageBeforeScaleTranslateX - frameCenterPositionX) * -1) + frameX;
+            translateY = ((imageBeforeScaleTranslateY - frameCenterPositionY) * -1) + frameY;
             document.querySelector('.image').style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        } else {
+            //压高
+          
         }
 
-
-        // for crop
-        // if((frameWidth / frameHeight) > (imgWidth / imgHeight)){
-        //     //压宽
-        //     const scale = frameWidth / imgWidth;
-        //     translateX = centerX + 0;
-        //     translateY = centerY + (frameHeight - (imgHeight * scale)) / 2;
-        //     document.querySelector('.image').style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-        // } else {
-        //     //压高
-        //     const scale = frameHeight / imgHeight;
-        //     translateX = centerX + (frameWidth - (imgWidth * scale)) / 2;
-        //     translateY = centerY + 0;
-        //     document.querySelector('.image').style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-        // }
+        //step rotate
+        
 
         document.querySelector('.image').addEventListener('click', ($event)=>{
             const finalX = $event.clientX - document.querySelector('.image').getBoundingClientRect().left;
